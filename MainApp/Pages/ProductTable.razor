@@ -1,0 +1,27 @@
+﻿<Table TItem="ProductRoadSign.Product" DataSource="@Source">
+    <Column Title="Type" @bind-Field="@context.ProductType"></Column>
+    <Column Title="Top" @bind-Field="@context.Title"></Column>
+    <Column Title="Contents" @bind-Field="@context.Contents">
+        @for (int i = 0; i < context.Contents.Length; i++)
+        {
+            <p>@context.Contents[i]</p>
+        }
+    </Column>
+    <Column Title="Bottom" @bind-Field="@context.Subscript"></Column>
+    <Column @bind-Field="@context.StartDate"></Column>
+    <Column @bind-Field="@context.EndDate"></Column>
+    <Column TData="string" Title="Verify">
+        @if (context.Verify)
+        {
+            <Tag Icon="check-circle" Color="success">success</Tag>
+        }
+        else
+        {
+            <Tag Icon="close-circle" Color="error">error</Tag>
+        }
+    </Column>
+</Table>
+@code{
+    [Parameter]
+    public List<ProductRoadSign.Product> Source { get; set; }
+}

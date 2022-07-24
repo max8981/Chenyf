@@ -1,0 +1,139 @@
+﻿@using AntDesign
+@using MainApp.Pages
+@page "/rs"
+<div class="site-page-header-ghost-wrapper">
+    <PageHeader BackIcon="true" Ghost="false">
+        <PageHeaderTitle>产品路标</PageHeaderTitle>
+        <PageHeaderSubtitle>
+            <ButtonGroup>
+                <Upload ShowUploadList="false"
+                        Action="/api/file/upload"
+                        Accept="Excel97-2003/xls,Excel2007/xlsx"
+                        Multiple="false"
+                        BeforeUpload="BeforeUpload"
+                        OnSingleCompleted="OnSingleCompleted">
+                    <Button Icon="@uploadIcon" Disabled="@uploadDisabled">
+                    </Button>
+                </Upload>
+                <Button Icon="@drawIcon" Disabled="@(source==null)" OnClick="Draw"/>
+            </ButtonGroup>
+        </PageHeaderSubtitle>
+        <PageHeaderExtra>
+            <Tooltip Title="@IconType.Outline.Setting">
+                <Button Icon="@IconType.Outline.Setting"
+                        Type="@ButtonType.Primary"
+                        Shape="@ButtonShape.Circle"
+                        OnClick="_=>setVisible=true" />
+            </Tooltip>
+        </PageHeaderExtra>
+        <PageHeaderContent>
+            <Descriptions Size="small" Column="3">
+                <ProductTable Source="@source" />
+            </Descriptions>
+        </PageHeaderContent>
+    </PageHeader>
+</div>
+
+<Modal Title=""
+       Visible="@_visible"
+       OnOk="@(_=>_visible=false)"
+       OnCancel="@(_=>_visible=false)">
+    <Image Src="@output" />
+</Modal>
+<Drawer Closable="true" Width="800" Visible="setVisible" Placement="right" Title='("参数设置")' OnClose="_=>setVisible=false">
+    <RoadSignSet />
+</Drawer>
+
+
+@code {
+
+    string output;
+    private bool setVisible;
+    List<UploadFileItem> fileList = new List<UploadFileItem>();
+    IList<IBrowserFile> files = new List<IBrowserFile>();
+    private List<ProductRoadSign.Product> source;
+    private bool _visible;
+    private string uploadIcon = IconType.Outline.Upload;
+    private bool uploadDisabled;
+    private string drawIcon = IconType.Outline.Check;
+    private bool drawDisabled;
+    protected override void OnInitialized()
+    {
+        var temp = ProductRoadSign.Config.TempPath;
+        base.OnInitialized();
+    }
+    bool BeforeUpload(UploadFileItem item)
+    {
+        uploadIcon = IconType.Outline.Loading;
+        uploadDisabled = true;
+        return true;
+    }
+    async Task OnSingleCompleted(UploadInfo fileinfo)
+    {
+        if (fileinfo.File.State == UploadState.Success)
+        {
+            _ = _message.Success("上传成功!");
+            var response = fileinfo.File.GetResponse<Controllers.ResultModel>();
+            var path = System.IO.Path.Combine("./upload", fileinfo.File.FileName);
+            try
+            {
+                await using FileStream fs = new FileStream(path, FileMode.Open);
+                ProductRoadSign.ExcelHelper.Excel excel;
+                if(fileinfo.File.Ext == ".xls")
+                {
+                    excel = ProductRoadSign.ExcelHelper.Input_xls(fs);
+                }
+                else if(fileinfo.File.Ext == ".xlsx")
+                {
+                    excel = ProductRoadSign.ExcelHelper.Input_xlsx(fs);
+                }
+                else
+                {
+                    _ = NoticeWithIcon("表格导入", $"未知的文件", NotificationType.Warning);
+                    return;
+                }
+                source = ProductRoadSign.ProductProcessor.FromExcel(excel).ToList();
+                StateHasChanged();
+                _ = NoticeWithIcon("表格导入", $"成功导入{excel.Count}条", NotificationType.Success);
+            }
+            catch (Exception ex)
+            {
+                _ = NoticeWithIcon("表格导入", $"{ex.Message}", NotificationType.Error);
+            }
+        }
+        uploadIcon = IconType.Outline.Upload;
+        uploadDisabled = false;
+    }
+    private async Task NoticeWithIcon(string message, string description, NotificationType type)
+    {
+        await _notice.Open(new NotificationConfig()
+        {
+            Message = message,
+            Description = description,
+            NotificationType = type
+        });
+    }
+    private async void Draw()
+    {
+        drawDisabled = true;
+        drawIcon = IconType.Outline.Loading;
+        try
+        {
+            var pp = new ProductRoadSign.ProductProcessor(source);
+            output = "data:image/png;base64," + await pp.Preview();
+            _visible = true;
+        }
+        catch (Exception ex)
+        {
+            await _message.Error(ex.Message);
+        }
+        finally
+        {
+            drawIcon = IconType.Outline.Check;
+            StateHasChanged();
+            source = null;
+            drawDisabled = false;
+        }
+    }
+}
+

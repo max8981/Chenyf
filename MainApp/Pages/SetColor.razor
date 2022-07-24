@@ -1,0 +1,46 @@
+﻿<Icon Type="@iconType" Theme="outline" Style="@iconcolor"/>
+<Select DataSource="@ProductRoadSign.Config.Colors"
+        @bind-Values="@_selectedColorValues"
+        Style="min-width:100px;"
+        OnSelectedItemChanged="OnSelectedItemChangedHandler"
+        LabelName="@nameof(ProductRoadSign.ColorModel.Name)"
+        ValueName="@nameof(ProductRoadSign.ColorModel.Value)"
+        EnableSearch>
+    <ItemTemplate Context="item">
+        <Badge Color="@(item.Value)" Text="@item.Name" />
+    </ItemTemplate>
+    <LabelTemplate Context="item">
+        <Tag Color="@item.Value">@item.Name</Tag>
+    </LabelTemplate>
+</Select>
+@code {
+    [Parameter]
+    public string Name { get; set; }
+    public ProductRoadSign.ColorModel Selected { get; set; }
+    IEnumerable<string> _selectedColorValues;
+    private string color;
+    private string backgroundcolor;
+    private string iconcolor;
+    private string iconType;
+    protected override void OnInitialized()
+    {
+        color = ProductRoadSign.Config.Get(Name);
+        if (Name.Contains("BackGroundColorl"))
+        {
+            iconType = "bg-colors";
+        }
+        else
+        {
+            iconType = "font-colors";
+        }
+        iconcolor = $"color:{color}";
+        base.OnInitialized();
+    }
+    private void OnSelectedItemChangedHandler(ProductRoadSign.ColorModel value)
+    {
+
+        ProductRoadSign.Config.Set(Name, value.Value);
+        color = value.Value;
+        iconcolor = $"color:{color}";
+    }
+}

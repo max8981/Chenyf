@@ -1,0 +1,28 @@
+﻿<Text>字体</Text>
+<Select DataSource="@fonts"
+        @bind-Value="@font"
+        Style="min-width:200px;"
+        LabelName="@nameof(ProductRoadSign.FontModel.Name)"
+        ValueName="@nameof(ProductRoadSign.FontModel.Value)"
+        Placeholder="@ProductRoadSign.Config.Get(Name)"
+        DefaultActiveFirstItem="false"
+        EnableSearch
+        OnSelectedItemChanged="OnSelectedItemChangedHandler">
+</Select>
+@code {
+    [Parameter]
+    public string Name { get; set; }
+    private ProductRoadSign.FontModel[] fonts;
+    private string? font;
+    protected override Task OnInitializedAsync()
+    {
+        font = ProductRoadSign.Config.Get(Name);
+        fonts = ProductRoadSign.Config.Fonts.ToArray();
+        return base.OnInitializedAsync();
+    }
+    private void OnSelectedItemChangedHandler(ProductRoadSign.FontModel value)
+    {
+        ProductRoadSign.Config.Set(Name, value.Value);
+    }
+}
+

@@ -1,0 +1,92 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MainApp
+build_property.RootNamespace = MainApp
+build_property.ProjectDir = /Users/maxin/Projects/Chenyf/MainApp/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/maxin/Projects/Chenyf/MainApp
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/Counter.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/FetchData.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/ProductTable.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJvZHVjdFRhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/RoadSign.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUm9hZFNpZ24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/RoadSignSet.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUm9hZFNpZ25TZXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/SetColor.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0Q29sb3IucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/SetDataSource.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0RGF0YVNvdXJjZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/SetFont.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0Rm9udC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/SetSource.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0U291cmNlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/SetTypeSort.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0VHlwZVNvcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Shared/SurveyPrompt.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL1N1cnZleVByb21wdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-erglvzelf9
+
+[/Users/maxin/Projects/Chenyf/MainApp/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-zm5np2bcuc
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/maxin/Projects/Chenyf/MainApp/Pages/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0xheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

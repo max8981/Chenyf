@@ -1,0 +1,63 @@
+﻿<Text>数据</Text>
+<Select Mode="multiple"
+        @bind-Values="@selecteds"
+        TItemValue="string"
+        TItem="string"
+        Placeholder="选择数据列"
+        OnSelectedItemsChanged="OnSelectedItemsChangedHandler"
+        Style="width: 240px;"
+        DropdownRender="@DropdownRender">
+    <SelectOptions>
+        @foreach (var item in ProductRoadSign.Config.Sources)
+        {
+            <SelectOption TItemValue="string" TItem="string" Value=@item Label=@item />
+        }
+    </SelectOptions>
+</Select>
+
+@code
+{
+    [Parameter]
+    public string Name { get; set; }
+    string _name = string.Empty;
+    private IEnumerable<string> source;
+    private IEnumerable<string> selecteds;
+    protected override void OnInitialized()
+    {
+        selecteds = ProductRoadSign.Config.Get<string[]>(Name);
+    }
+
+    private void OnSelectedItemsChangedHandler(IEnumerable<string> value)
+    {
+        selecteds = value;
+        ProductRoadSign.Config.Set(Name, selecteds);
+    }
+
+    private RenderFragment DropdownRender(RenderFragment originNode)
+    {
+        RenderFragment customDropdownRender =
+            @<Template>
+                <div>
+                    @originNode
+                    <Divider Style="margin: 4px 0"></Divider>
+                    <div style="display: flex; flex-wrap: nowrap; padding: 8px">
+                        <Input Style="flex: auto" @bind-Value="@_name" />
+                        <a style="flex: none; padding: 8px; display: block; cursor: pointer" @onclick="AddItem">
+                            <Icon Type="plus" Theme="outline"></Icon>
+                            添加列名
+                        </a>
+                    </div>
+                </div>
+            </Template>;
+        return customDropdownRender;
+    }
+
+    private void AddItem(MouseEventArgs args)
+    {
+        if (!string.IsNullOrWhiteSpace(_name))
+        {
+            ProductRoadSign.Config.Sources = ProductRoadSign.Config.Sources.Append(_name);
+            _name = string.Empty;
+        }
+    }
+}

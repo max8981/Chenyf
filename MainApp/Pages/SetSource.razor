@@ -1,0 +1,60 @@
+﻿<Text>数据</Text>
+<Select @bind-Value="@selected"
+        Style="min-width:200px;"
+        TItemValue="string"
+        TItem="string"
+        Placeholder="@ProductRoadSign.Config.Get(Name)"
+        DefaultActiveFirstItem="false"
+        EnableSearch
+        OnSelectedItemChanged="OnSelectedItemChangedHandler"
+        DropdownRender="@DropdownRender">
+    <SelectOptions>
+        @foreach (var item in ProductRoadSign.Config.Sources)
+        {
+            <SelectOption TItemValue="string" TItem="string" Value=@item Label=@item />
+        }
+    </SelectOptions>
+</Select>
+@code {
+    [Parameter]
+    public string Name { get; set; }
+    string _name = string.Empty;
+    private string? selected;
+    private IEnumerable<string> source;
+    protected override Task OnInitializedAsync()
+    {
+        selected = ProductRoadSign.Config.Get(Name);
+        return base.OnInitializedAsync();
+    }
+    private void OnSelectedItemChangedHandler(string value)
+    {
+        ProductRoadSign.Config.Set(Name, value);
+    }
+    private RenderFragment DropdownRender(RenderFragment originNode)
+    {
+        RenderFragment customDropdownRender =
+        @<Template>
+            <div>
+                @originNode
+                <Divider Style="margin: 4px 0"></Divider>
+                <div style="display: flex; flex-wrap: nowrap; padding: 8px">
+                    <Input Style="flex: auto" @bind-Value="@_name" />
+                    <a style="flex: none; padding: 8px; display: block; cursor: pointer" @onclick="AddItem">
+                        <Icon Type="plus" Theme="outline"></Icon>
+                        添加列名
+                    </a>
+                </div>
+            </div>
+        </Template>;
+        return customDropdownRender;
+    }
+    private void AddItem(MouseEventArgs args)
+    {
+        if (!string.IsNullOrWhiteSpace(_name))
+        {
+            ProductRoadSign.Config.Sources = ProductRoadSign.Config.Sources.Append(_name);
+            _name = string.Empty;
+        }
+    }
+}
+

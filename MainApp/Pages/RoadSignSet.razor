@@ -1,0 +1,65 @@
+﻿<Collapse DefaultActiveKey="@(new[]{"1"})" Accordion>
+    <Panel Header="公共">
+        <Text>月度像素值</Text>
+        <AntDesign.InputNumber @bind-Value="@ProductRoadSign.Config.MonthPixel" />
+        <Text>边距像素值</Text>
+        <AntDesign.InputNumber @bind-Value="@ProductRoadSign.Config.Margins" />
+        <Text>虚线宽度值</Text>
+        <AntDesign.InputNumber @bind-Value="@ProductRoadSign.Config.SplitLine" />
+        <p>
+            <SetFont Name="RulerFont" />
+            <Icon Type="font-size" Theme="outline" />
+            <AntDesign.InputNumber @bind-Value="@ProductRoadSign.Config.RulerSize" />
+            <SetColor Name="RulerColor" />
+        </p>
+        <p>
+            产品类型
+            <SetSource Name="TypeSource" />
+        </p>
+        <p>
+            开始时间
+            <SetSource Name="StartSource" />
+        </p>
+        <p>
+            结束时间
+            <SetSource Name="EndSource" />
+        </p>
+    </Panel>
+    <Panel Header="分类">
+        <SetTypeSort/>
+    </Panel>
+    <Panel Header="Top">
+        <SetFont Name="TopFont" />
+        <Icon Type="font-size" Theme="outline" />
+        <AntDesign.InputNumber @bind-Value="@ProductRoadSign.Config.TopSize" />
+        <SetColor Name="TopColor" />
+        <SetColor Name="TopBackGroundColorl" />
+        <p>
+            <SetDataSource Name="TopSource" />
+        </p>
+    </Panel>
+    <Panel Header="Center">
+        <SetFont Name="CenterFont" />
+        <Icon Type="font-size" Theme="outline" />
+        <AntDesign.InputNumber @bind-Value="@ProductRoadSign.Config.CenterSize" />
+        <SetColor Name="CenterColor" />
+        <SetColor Name="CenterBackGroundColorl" />
+        <p>
+            <SetDataSource Name="CenterSource" />
+        </p>
+    </Panel>
+    <Panel Header="Bottom">
+        <SetFont Name="BottomFont" />
+        <Icon Type="font-size" Theme="outline" />
+        <AntDesign.InputNumber @bind-Value="@ProductRoadSign.Config.BottomSize" />
+        <SetColor Name="BottomColor" />
+        <SetColor Name="BottomBackGroundColorl" />
+        <p>
+            <SetDataSource Name="BottomSource" />
+        </p>
+    </Panel>
+</Collapse>
+    @code {
+
+    }
+

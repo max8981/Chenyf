@@ -1,0 +1,134 @@
+﻿<Button OnClick="addRow" Type="primary" Style="margin-bottom:16px">
+    添加
+</Button>
+<Button OnClick="Save" Type="primary" Style="margin-bottom:16px">
+    保存
+</Button>
+<Table DataSource="@data" Bordered=@true Size=@TableSize.Small>
+    <Column Width="30%" Title="产品分类" DataIndex="@nameof(context.Value)" TData="string">
+        @if (editId == context.Key)
+        {
+            <Input Type="text" @bind-Value="data[context.Key]" OnBlur="stopEdit" AutoFocus />
+        }
+        else
+        {
+            <div class="editable-cell-value-wrap" style="padding-right:24px" @onclick="()=>startEdit(context.Key)">
+                @context.Value
+            </div>
+        }
+    </Column>
+    <ActionColumn Title="操作">
+        <Space Size=@("middle")>
+            <SpaceItem>
+                <ButtonGroup>
+                    <Button Icon="@IconType.Outline.CaretUp" OnClick="()=>Up(context.Key)" Disabled="@(context.Key<2)" />
+                    <Button Icon="@IconType.Outline.CaretDown" OnClick="()=>Down(context.Key)" Disabled="@(context.Key==data.Last().Key)" />
+                    <Button Icon="@IconType.Outline.VerticalAlignTop" OnClick="()=>ToTop(context.Key)" Disabled="@(context.Key<2)" />
+                </ButtonGroup>
+            </SpaceItem>
+            <SpaceItem>
+                <Popconfirm Title="确认删除?"
+                            OnConfirm="()=> deleteRow(context.Key)"
+                            OkText="是"
+                            CancelText="否">
+                    <Button Icon="@IconType.Outline.Delete" Style="color:red" />
+                </Popconfirm>
+            </SpaceItem>
+        </Space>
+    </ActionColumn>
+</Table>
+@code{
+    private int i = 0;
+    private int editId;
+    private string editText;
+    private Dictionary<int, string> data = new();
+    protected override void OnInitialized()
+    {
+        Load();
+        base.OnInitialized();
+    }
+    void Load()
+    {
+        data.Clear();
+        var a = ProductRoadSign.Config.ProductTypes.ToArray();
+        for (int i = 0; i < a.Length; i++)
+        {
+            data.Add(i + 1, a[i]);
+        };
+    }
+    void Save()
+    {
+        var list= data.OrderByDescending(_ => _.Key).Select(_ => _.Value).ToArray();
+        ProductRoadSign.Config.ProductTypes = list;
+    }
+    void addRow()
+    {
+        data.Add(0, "新产品");
+        ToTop(0);
+    }
+    void deleteRow(int id)
+    {
+        data.Remove(id);
+    }
+    void startEdit(int id)
+    {
+        editText = data[id];
+        editId = id;
+    }
+    async Task stopEdit()
+    {
+        var tmp = data[editId];
+        if (string.IsNullOrEmpty(tmp))
+        {
+            data[editId] = editText;
+        }
+        try
+        {
+            data.Single(_ => _.Value == data[editId]);
+            Save();
+        }
+        catch
+        {
+            data[editId] = editText;
+            await _message.Warning("重复的产品分类");
+            data.Remove(editId);
+            editText = String.Empty;
+        }
+        finally
+        {
+            editId = -1;
+        }
+    }
+    void Up(int id)
+    {
+        if (id > 0)
+        {
+            var tmp = data[id - 1];
+            data[id - 1] = data[id];
+            data[id] = tmp;
+        }
+    }
+    void Down(int id)
+    {
+        if (id <= data.Count)
+        {
+            var tmp = data[id + 1];
+            data[id + 1] = data[id];
+            data[id] = tmp;
+        }
+    }
+    void ToTop(int id)
+    {
+        if(data.TryGetValue(id,out var tmp))
+        {
+            data.Remove(id);
+            var list = new List<string> { tmp };
+            data.Values.ForEach(_ => list.Add(_));
+            data.Clear();
+            for (int i = 0; i < list.Count; i++)
+            {
+                data.Add(i + 1, list[i]);
+            }
+        }
+    }
+}
