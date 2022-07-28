@@ -9,19 +9,7 @@ namespace ProductRoadSign
 {
     public class Config
     {
-        public static string[] FindFont()
-        {
-            var result = SystemFonts.Collection.Families.Select(_ => _.Name).ToList();
-            //FontCollection collection = new();
-            //FontFamily family = collection.Add("./Fonts/msyh.ttf");
-            //Font font = family.CreateFont(18, FontStyle.Italic);
-            //result.Add(font.Name);
-            return result.ToArray();
-        }
-        private static readonly Configuration configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-        private static AppSettingsSection setting = configFile.AppSettings;
         private static readonly Config config = new Config();
-        public static Config Default => config;
         private static FontModel[] GetFonts()
         {
             List<FontModel> result = new();
@@ -71,12 +59,6 @@ namespace ProductRoadSign
         }
         public static void Set(string name, string value)
         {
-            Save(name, value);
-        }
-        public static void Set(Type type)
-        {
-            var name = type.Name;
-            var value = type.ToString();
             Save(name, value);
         }
         public static string TempPath => System.IO.Path.GetTempPath();

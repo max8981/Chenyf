@@ -63,8 +63,11 @@
     }
     void addRow()
     {
-        data.Add(0, "新产品");
-        ToTop(0);
+        if (!data.Values.Contains("新产品"))
+        {
+            data.Add(0, "新产品");
+            ToTop(0);            
+        }
     }
     void deleteRow(int id)
     {
@@ -77,12 +80,13 @@
     }
     async Task stopEdit()
     {
-        var tmp = data[editId];
-        if (string.IsNullOrEmpty(tmp))
+        if(data.TryGetValue(editId,out var value))
         {
-            data[editId] = editText;
-        }
-        try
+            if (string.IsNullOrEmpty(value))
+            {
+                data[editId] = editText;
+            }
+            try
         {
             data.Single(_ => _.Value == data[editId]);
             Save();
@@ -97,6 +101,7 @@
         finally
         {
             editId = -1;
+        }
         }
     }
     void Up(int id)

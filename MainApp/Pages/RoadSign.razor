@@ -34,13 +34,13 @@
     </PageHeader>
 </div>
 
-<Modal Title=""
+<Modal Title="预览"
        Visible="@_visible"
-       OnOk="@(_=>_visible=false)"
-       OnCancel="@(_=>_visible=false)">
+       OnOk="PreviewClose"
+       OnCancel="PreviewClose">
     <Image Src="@output" />
 </Modal>
-<Drawer Closable="true" Width="800" Visible="setVisible" Placement="right" Title='("参数设置")' OnClose="_=>setVisible=false">
+<Drawer Closable="true" Width="600" Visible="setVisible" Placement="right" Title='("参数设置")' OnClose="_=>setVisible=false">
     <RoadSignSet />
 </Drawer>
 
@@ -134,6 +134,11 @@
             source = null;
             drawDisabled = false;
         }
+    }
+    private void PreviewClose()
+    {
+        _visible=false;
+        output = string.Empty;
     }
 }
 

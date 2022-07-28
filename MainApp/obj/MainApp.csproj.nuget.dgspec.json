@@ -1,33 +1,35 @@
 {
   "format": 1,
   "restore": {
-    "/Users/maxin/Projects/Chenyf/MainApp/MainApp.csproj": {}
+    "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\MainApp\\MainApp.csproj": {}
   },
   "projects": {
-    "/Users/maxin/Projects/Chenyf/MainApp/MainApp.csproj": {
+    "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\MainApp\\MainApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/maxin/Projects/Chenyf/MainApp/MainApp.csproj",
+        "projectUniqueName": "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\MainApp\\MainApp.csproj",
         "projectName": "MainApp",
-        "projectPath": "/Users/maxin/Projects/Chenyf/MainApp/MainApp.csproj",
-        "packagesPath": "/Users/maxin/.nuget/packages/",
-        "outputPath": "/Users/maxin/Projects/Chenyf/MainApp/obj/",
+        "projectPath": "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\MainApp\\MainApp.csproj",
+        "packagesPath": "C:\\Users\\maxin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\MainApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/maxin/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\maxin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/maxin/Projects/Chenyf/ProductRoadSign/ProductRoadSign.csproj": {
-                "projectPath": "/Users/maxin/Projects/Chenyf/ProductRoadSign/ProductRoadSign.csproj"
+              "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\ProductRoadSign\\ProductRoadSign.csproj": {
+                "projectPath": "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\ProductRoadSign\\ProductRoadSign.csproj"
               }
             }
           }
@@ -53,8 +55,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -66,26 +67,28 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.400-preview.22330.6/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/maxin/Projects/Chenyf/ProductRoadSign/ProductRoadSign.csproj": {
+    "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\ProductRoadSign\\ProductRoadSign.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/maxin/Projects/Chenyf/ProductRoadSign/ProductRoadSign.csproj",
+        "projectUniqueName": "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\ProductRoadSign\\ProductRoadSign.csproj",
         "projectName": "ProductRoadSign",
-        "projectPath": "/Users/maxin/Projects/Chenyf/ProductRoadSign/ProductRoadSign.csproj",
-        "packagesPath": "/Users/maxin/.nuget/packages/",
-        "outputPath": "/Users/maxin/Projects/Chenyf/ProductRoadSign/obj/",
+        "projectPath": "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\ProductRoadSign\\ProductRoadSign.csproj",
+        "packagesPath": "C:\\Users\\maxin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maxin\\source\\repos\\max8981\\Chenyf\\ProductRoadSign\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/maxin/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\maxin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -123,8 +126,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -133,7 +135,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.400-preview.22330.6/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -6,12 +6,12 @@
         </button>
     </div>
 </div>
+
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="rs" Match="NavLinkMatch.All">
-                <Icon Type="partition" Theme="outline" />
-                产品路标
+                @*<Icon Type="partition" Theme="outline"/> *@产品路标
             </NavLink>
         </div>
     </nav>
@@ -27,4 +27,3 @@
         collapseNavMenu = !collapseNavMenu;
     }
 }
-
